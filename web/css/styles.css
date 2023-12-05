@@ -1,0 +1,13 @@
+html {
+  font-family: sans-serif;
+}
+
+.layout {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.block {
+  padding: 0.5rem 1rem;
+}
+

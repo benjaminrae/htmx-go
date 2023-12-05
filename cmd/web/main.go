@@ -33,6 +33,7 @@ func main() {
 
 	e.Static("/css/", "web/css")
 	e.Static("/assets/", "web/assets")
+	e.Static("/js/", "web/js")
 	e.GET("/ping", func(c echo.Context) error {
 		return c.NoContent(http.StatusOK)
 	})
