@@ -31,6 +31,8 @@ func main() {
 
 	e.GET("/", views.Index)
 
+	e.Static("/css/", "web/css")
+	e.Static("/assets/", "web/assets")
 	e.GET("/ping", func(c echo.Context) error {
 		return c.NoContent(http.StatusOK)
 	})
