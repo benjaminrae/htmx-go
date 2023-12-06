@@ -1,5 +1,10 @@
 {{ block "layout" . }}
   <div class="layout">
     {{ template "header" . }}
+    <ul class="block">
+      {{ range .ToDos.ToDos }}
+          {{ template "todo" . }}
+      {{ end }}
+    </ul>
   </div>
 {{ end }}
