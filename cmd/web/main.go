@@ -1,13 +1,16 @@
 package main
 
 import (
+	"fmt"
 	"html/template"
 	"io"
 	"net/http"
 
+	"htmx-test/internal/todo"
+	"htmx-test/internal/views"
+
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	"htmx-test/internal/views"
 )
 
 // https://echo.labstack.com/docs/templates#rendering
@@ -30,6 +33,25 @@ func main() {
 	e.Use(middleware.Logger())
 
 	e.GET("/", views.Index)
+
+	toDoList := todo.ToDoList{
+		ToDos: []todo.ToDo{
+			{
+				Task:       "Do something",
+				Id:         1,
+				IsComplete: false,
+			},
+		},
+	}
+
+	e.GET("/todos", views.ToDoList(toDoList))
+	e.POST("/todos", func(c echo.Context) error {
+		toDoList.CreateTodo(c.FormValue("task"))
+		fmt.Println(toDoList)
+		return c.Render(http.StatusOK, "todo-list.html", views.ToDoListView{
+			ToDos: toDoList,
+		})
+	})
 
 	e.Static("/css/", "web/css")
 	e.Static("/assets/", "web/assets")

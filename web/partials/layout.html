@@ -1,10 +1,8 @@
 {{ block "layout" . }}
   <div class="layout">
     {{ template "header" . }}
-    <ul class="block">
-      {{ range .ToDos.ToDos }}
-          {{ template "todo" . }}
-      {{ end }}
+    <ul id="todo-list" class="block" hx-get="/todos" hx-trigger="load">
     </ul>
+    {{ template "create-todo" . }}
   </div>
 {{ end }}

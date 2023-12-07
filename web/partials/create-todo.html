@@ -1,0 +1,11 @@
+{{ block "create-todo" .}}
+  <form class="block" hx-post="/todos" hx-target="#todo-list">
+      <h2>Create Task</h2>
+      <div class="form-group">
+        <label for="task">Task</label>
+        <input id="task" name="task">
+      </div>
+      <button type="submit">Save task</button>
+  </form>
+{{ end }}
+

@@ -8,13 +8,15 @@ import (
 )
 
 type IndexPage struct {
-	ToDos todo.ToDoList
+	ToDoList todo.ToDoList
 }
 
 func Index(c echo.Context) error {
 	return c.Render(http.StatusOK, "index.html", IndexPage{
-		ToDos: todo.ToDoList{
-			ToDos: []todo.ToDo{},
+		ToDoList: todo.ToDoList{
+			ToDos: []todo.ToDo{
+				{Task: "Do something", Id: 1, IsComplete: false},
+			},
 		},
 	})
 }
